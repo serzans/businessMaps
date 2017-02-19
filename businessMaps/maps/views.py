@@ -3,17 +3,21 @@ from django.template import loader
 
 
 # Google maps API example
-from googlemaps import GoogleMaps
-# Import settings file
 from django.conf import settings
 
 GMAPS_API_KEY=getattr(settings,"GMAPS_API_KEY",None)
 
-gmaps = GoogleMaps(GMAPS_API_KEY)
+import googlemaps
+
+gmaps=googlemaps.Client(key=GMAPS_API_KEY)
 
 address = 'Lady Margaret Hall'
-lat, lng = gmaps.address_to_latlng(address)
+result = gmaps.geocode(address)
+print result
 
+lat = result[0][u'geometry'][u'location'][u'lat']
+lng = result[0][u'geometry'][u'location'][u'lng']
+print lat
 
 # # Geocoding an address
 # geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
@@ -34,10 +38,12 @@ lat, lng = gmaps.address_to_latlng(address)
 from django.http import HttpResponse
 
 def index(request):
-	test_variable=[lat,lng]
+	test_variable='Test string to pass to the template'
 	template=loader.get_template('maps/index.html')
 	context={
 		'test_variable': test_variable,
+		'lat': lat,
+		'lng': lng,
 	}
 	return render(request,"maps/index.html",context)
 	# return HttpResponse("Hello, world.")
