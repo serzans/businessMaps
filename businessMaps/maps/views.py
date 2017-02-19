@@ -13,11 +13,10 @@ gmaps=googlemaps.Client(key=GMAPS_API_KEY)
 
 address = 'Lady Margaret Hall'
 result = gmaps.geocode(address)
-print result
 
 lat = result[0][u'geometry'][u'location'][u'lat']
 lng = result[0][u'geometry'][u'location'][u'lng']
-print lat
+
 
 # # Geocoding an address
 # geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
@@ -47,3 +46,4 @@ def index(request):
 	}
 	return render(request,"maps/index.html",context)
 	# return HttpResponse("Hello, world.")
+
