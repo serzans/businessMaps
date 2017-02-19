@@ -44,6 +44,10 @@ for place in places['results']:
 	geo_dict['geometry'] = {}
 	geo_dict['geometry']['type'] = 'Point'
 	geo_dict['geometry']['coordinates'] = place['geometry']['location'].values()
+	geo_dict[u'type'] = 'Feature'
+	geo_dict[u'geometry'] = {}
+	geo_dict[u'geometry'][u'type'] = 'Point'
+	geo_dict[u'geometry'][u'coordinates'] = place[u'geometry'][u'location'].values()
 
 	geojson.append(geo_dict)
 
