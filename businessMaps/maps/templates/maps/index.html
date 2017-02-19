@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'maps/style.css' %}" />
@@ -13,6 +15,14 @@
 
 <body>
 
+
+{% extends 'maps/header.html' %}
+{% block content %}
+>>>>>>> frontEndUI
+=======
+{% extends 'maps/header.html' %}
+{% block content %}
+>>>>>>> frontEndUI
 <h1>{{ test_variable }} (coordinates, type, etc.)</h1>
 
 <div class="jumbotron text-center">
@@ -51,6 +61,8 @@
 
 			4square, Google Maps, Instagram, Flickr
 		</div>
+<<<<<<< HEAD
+<<<<<<< HEAD
 		
 		<!-- Map -->
 		<div class="col-sm-6">
@@ -127,10 +139,237 @@ map.on('load', function () {
 			
 
 		</div>
+
 	</div>
 </div>
 
+<!-- Map -->
+
+<div class="jumbotron" >
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <div class="row">
+                        <h3>
+                        <input type="checkbox" value="whatever" name="API">
+                        Whatever
+                        </h3>
+                    </div>
+                    <div class="row">
+                        <h3>
+                        <input type="checkbox" value="foursquare" name="API">
+                        Foursquare
+                        </h3>
+                    </div>
+                    <div class="row">
+                        <h3>
+                        <input type="checkbox" value="google" name="API">
+                        Google
+                        </h3>
+                    </div>
+                    <div class="row">
+                        <h3>
+                        <input type="checkbox" value="yelp" name="API">
+                        Yelp
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+            <div id="map"></div>
+            </div>
+            <div class="col-sm-3">
+                <select id="businessType" class="form-control">
+                    <option value="restaurant">Restaurant</option>
+                    <option value="shop">Shop</option>
+                    <option value="three">three</option>
+                    <option value="four">four</option>
+                    <option value="five">five</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <button type="button" id="search" class="btn btn-primary">Search</button>
+        </div>
+	</div>
+</div>
+<<<<<<< HEAD
+
+<script>
+
+</script>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
+
+        <!-- Mapbox API -->
+        <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+            center: [-0.9,51.7520], // starting position
+            zoom: 9, // starting zoom
+        });
+        map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken
+        }));
+</script>
+
+<script>
+$(document).ready( function() {
+    $('#search').click(function(){
+
+        var APIarray = [];
+
+        $.each($("input[name='API']:checked"), function(){
+            APIarray.push($(this).val());
+        });
+
+        searchRequest = {type: $('#businessType').val(), API: APIarray, coord: map.getCenter().toArray()};
+
+        alert( JSON.stringify(searchRequest) );
+
+        $.ajax({
+
+        });
+
+    });
+});
+
+function updateMap(response) {
+    map.addLayer({
+        "id": "points",
+        "type": "symbol",
+        "source": {
+            "type": "geojson",
+            "data":
+                "type": "FeatureCollection",
+                "features": {{jsonData}},
+                // [{
+                //     "type": "Feature",
+                //     "geometry": {
+                //         "type": "Point",
+                //         "coordinates": [-77.03238901390978, 38.913188059745586]
+                //     },
+                //     "properties": {
+                //         "title": "Mapbox DC",
+                //         "icon": "monument"
+                //     }
+                // }, {
+                //     "type": "Feature",
+                //     "geometry": {
+                //         "type": "Point",
+                //         "coordinates": [-122.414, 37.776]
+                //     },
+                //     "properties": {
+                //         "title": "Mapbox SF",
+                //         "icon": "harbor"
+                //     }
+                // }]
+            }
+        },
+        "layout": {
+            "icon-image": "{icon}-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+}
 
 
+=======
 
-</body>
+<script>
+
+</script>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
+
+        <!-- Mapbox API -->
+        <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+            center: [-0.9,51.7520], // starting position
+            zoom: 9, // starting zoom
+        });
+        map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken
+        }));
+</script>
+
+<script>
+$(document).ready( function() {
+    $('#search').click(function(){
+
+        var APIarray = [];
+
+        $.each($("input[name='API']:checked"), function(){
+            APIarray.push($(this).val());
+        });
+
+        searchRequest = {type: $('#businessType').val(), API: APIarray, coord: map.getCenter().toArray()};
+
+        alert( JSON.stringify(searchRequest) );
+
+        $.ajax({
+
+        });
+
+    });
+});
+
+function updateMap(response) {
+    map.addLayer({
+        "id": "points",
+        "type": "symbol",
+        "source": {
+            "type": "geojson",
+            "data":
+                "type": "FeatureCollection",
+                "features": {{jsonData}},
+                // [{
+                //     "type": "Feature",
+                //     "geometry": {
+                //         "type": "Point",
+                //         "coordinates": [-77.03238901390978, 38.913188059745586]
+                //     },
+                //     "properties": {
+                //         "title": "Mapbox DC",
+                //         "icon": "monument"
+                //     }
+                // }, {
+                //     "type": "Feature",
+                //     "geometry": {
+                //         "type": "Point",
+                //         "coordinates": [-122.414, 37.776]
+                //     },
+                //     "properties": {
+                //         "title": "Mapbox SF",
+                //         "icon": "harbor"
+                //     }
+                // }]
+            }
+        },
+        "layout": {
+            "icon-image": "{icon}-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+}
+
+
+>>>>>>> frontEndUI
+
+</script>
+
+{% endblock %}
