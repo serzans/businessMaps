@@ -1,11 +1,12 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'maps/style.css' %}" />
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <head>
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
-
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet'/>
 </head>
 
 
@@ -15,47 +16,51 @@
 
 <h1>Economic Activity Mapping</h1>
 
+<div class="container">
+	<div class="row">
+		<!-- User interface -->
+		<div class="col-sm-6">
+			<h4>Here goes the UI</h4>
 
-<!-- Added some ideas about UI -->
-<div id='UIContainer'>
-<h4>Here goes the user Interface</h4>
+			<ul>
+			<li>Allow uploads of GIS files for more custom maps</li>
 
-<ul>
-<li>Allow uploads of GIS files for more custom maps</li>
+			<li>Select location (google maps API): searchbar</li>
+			<li>Filter which data is included: checkboxes ... find the API's and plot the locations on the map. Use interpolation with weighting to produce heatmaps</li>
+			<li>Population density filter: google maps?</li>
+			<li>Threshold filters</li>
+			<li>Drop-down or similar: Type of business</li>
+			<li>Button: show competitors</li>
+			</ul>
 
-<li>Select location (google maps API): searchbar</li>
-<li>Filter which data is included: checkboxes ... find the API's and plot the locations on the map. Use interpolation with weighting to produce heatmaps</li>
-<li>Population density filter: google maps?</li>
-<li>Threshold filters</li>
+			<h4>Some general ideas</h4>
 
-<li>Drop-down or similar: Type of business</li>
-<li>Button: show competitors</li>
-</ul>
+			Plot properties available for rent on the map and link to real estate agencies
 
-<h4>Some general ideas</h4>
+			Draw correlations between different data
 
-Plot properties available for rent on the map and link to real estate agencies
+			Find 'CBD' zones
 
-Draw correlations between different data
-
-Find 'CBD' zones
-
-Core value: find location for business
+			Core value: find location for business
 
 
-<h4>Where to get the API's?</h4>
+			<h4>Where to get the API's?</h4>
 
-4square, Google Maps, Instagram, Flickr
-We need to ensure that this is actually doable.
-
+			4square, Google Maps, Instagram, Flickr
+			Need to ensure that this is actually doable.
+		</div>
+		
+		<!-- Map -->
+		<div class="col-sm-6">
+			<div id='map'>
+				
+			</div>
+		</div>
+	</div>
 </div>
 
-<div id='mapContainer'>
-<div id='map'>
 
-</div>
-</div>
-
+<!-- Mapbox API -->
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
 var map = new mapboxgl.Map({
