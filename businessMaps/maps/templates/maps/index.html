@@ -17,27 +17,52 @@
 
 
 <!-- Added some ideas about UI -->
-
-<p>User Interface</p>
+<div id='UIContainer'>
+<h4>Here goes the user Interface</h4>
 
 <ul>
+<li>Allow uploads of GIS files for more custom maps</li>
+
 <li>Select location (google maps API): searchbar</li>
-<li>Filter which data is included: checkboxes ... find the API's \& plot the locations on the map. Use interpolation with weighting to produce heatmaps</li>
+<li>Filter which data is included: checkboxes ... find the API's and plot the locations on the map. Use interpolation with weighting to produce heatmaps</li>
 <li>Population density filter: google maps?</li>
-<li>Threshold filter</li>
+<li>Threshold filters</li>
 
 <li>Drop-down or similar: Type of business</li>
 <li>Button: show competitors</li>
 </ul>
 
-<div id='map'></div>
+<h4>Some general ideas</h4>
+
+Plot properties available for rent on the map and link to real estate agencies
+
+Draw correlations between different data
+
+Find 'CBD' zones
+
+Core value: find location for business
+
+
+<h4>Where to get the API's?</h4>
+
+4square, Google Maps, Instagram, Flickr
+We need to ensure that this is actually doable.
+
+</div>
+
+<div id='mapContainer'>
+<div id='map'>
+
+</div>
+</div>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
 var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
     center: [-0.9,51.7520], // starting position
-    zoom: 9 // starting zoom
+    zoom: 9, // starting zoom
 });
 </script>
 

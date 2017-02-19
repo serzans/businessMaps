@@ -1,5 +1,18 @@
-#map {
-	text-align: center;
-	width: 1000px;
-	height: 600px;
+#UIContainer {
+	height:50em;
+	position: relative;
+	top:5%;
+	width:30%;
+	left:0%;
 }
+
+#mapContainer {
+	height: 50%;
+	position: relative; 
+	top:5%;
+	width:40%;
+	left: 55%;
+	margin-right: auto;      
+}
+
+#map { position:absolute; top:0%; bottom:0%; left:0%; width:100%; }
