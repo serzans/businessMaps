@@ -33,6 +33,13 @@ lng = result[0][u'geometry'][u'location'][u'lng']
 
 # End of Google maps exmaple
 
+query = 'restaurant' # type of business user inputted
+rad = 100 # depends on the zoom level
+places = gmaps.places(query, location = (lat, lng), radius = rad)
+
+coordinates = []
+for place in places['results']:
+	coordinates.append(place['geometry']['location'].values())
 
 from django.http import HttpResponse
 
@@ -43,6 +50,7 @@ def index(request):
 		'test_variable': test_variable,
 		'lat': lat,
 		'lng': lng,
+		'coordinates': coordinates,
 	}
 	return render(request,"maps/index.html",context)
 	# return HttpResponse("Hello, world.")
