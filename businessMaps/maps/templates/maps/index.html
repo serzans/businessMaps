@@ -1,28 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'maps/style.css' %}" />
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<head>
-<script src='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet'/>
-
-</head>
-
-
-<body>
-
-
 {% extends 'maps/header.html' %}
 {% block content %}
->>>>>>> frontEndUI
-=======
-{% extends 'maps/header.html' %}
-{% block content %}
->>>>>>> frontEndUI
+
 <h1>{{ test_variable }} (coordinates, type, etc.)</h1>
 
 <div class="jumbotron text-center">
@@ -61,89 +39,8 @@
 
 			4square, Google Maps, Instagram, Flickr
 		</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		
-		<!-- Map -->
-		<div class="col-sm-6">
-			<div id="map">
-			</div>
-
-			<!-- Mapbox API -->
-			<script>
-			L.mapboxgl.accessToken = '';
-
-			var geojson = {{geojson}} // Retrieve coordinate variable from views.py
-
-
-			var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapGeo);
-			mapGeo.scrollWheelZoom.disable(); // Plot a layer of queried points
-			</script>
-
-
-
-
-<script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
-    center: [{{lng}}, {{lat}}],
-    zoom: 15,
-});
-
-map.on('load', function () {
-
-    map.addLayer({
-        "id": "points",
-        "type": "symbol",
-        "source": {
-            "type": "geojson",
-            "data": {
-                "type": "FeatureCollection",
-                "features": {{geojson}}
-                // [{
-                //     "type": "Feature",
-                //     "geometry": {
-                //         "type": "Point",
-                //         "coordinates": [-77.03238901390978, 38.913188059745586]
-                //     },
-                //     "properties": {
-                //         "title": "Mapbox DC",
-                //         "icon": "monument"
-                //     }
-                // }, {
-                //     "type": "Feature",
-                //     "geometry": {
-                //         "type": "Point",
-                //         "coordinates": [-122.414, 37.776]
-                //     },
-                //     "properties": {
-                //         "title": "Mapbox SF",
-                //         "icon": "harbor"
-                //     }
-                // }]
-            }
-        },
-        "layout": {
-            "icon-image": "{icon}-15",
-            "text-field": "{title}",
-            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            "text-offset": [0, 0.6],
-            "text-anchor": "top"
-        }
-    });
-});
-</script>
-
-			
-
-		</div>
-
-	</div>
-</div>
-
-<!-- Map -->
 
 <div class="jumbotron" >
 	<div class="container">
@@ -194,17 +91,13 @@ map.on('load', function () {
         </div>
 	</div>
 </div>
-<<<<<<< HEAD
 
-<script>
-
-</script>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
-        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
 
-        <!-- Mapbox API -->
-        <script>
+<!-- Mapbox API -->
+<script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
         var map = new mapboxgl.Map({
             container: 'map', // container id
@@ -279,97 +172,6 @@ function updateMap(response) {
         }
     });
 }
-
-
-=======
-
-<script>
-
-</script>
-
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
-        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
-
-        <!-- Mapbox API -->
-        <script>
-        mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
-        var map = new mapboxgl.Map({
-            container: 'map', // container id
-            style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
-            center: [-0.9,51.7520], // starting position
-            zoom: 9, // starting zoom
-        });
-        map.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken
-        }));
-</script>
-
-<script>
-$(document).ready( function() {
-    $('#search').click(function(){
-
-        var APIarray = [];
-
-        $.each($("input[name='API']:checked"), function(){
-            APIarray.push($(this).val());
-        });
-
-        searchRequest = {type: $('#businessType').val(), API: APIarray, coord: map.getCenter().toArray()};
-
-        alert( JSON.stringify(searchRequest) );
-
-        $.ajax({
-
-        });
-
-    });
-});
-
-function updateMap(response) {
-    map.addLayer({
-        "id": "points",
-        "type": "symbol",
-        "source": {
-            "type": "geojson",
-            "data":
-                "type": "FeatureCollection",
-                "features": {{jsonData}},
-                // [{
-                //     "type": "Feature",
-                //     "geometry": {
-                //         "type": "Point",
-                //         "coordinates": [-77.03238901390978, 38.913188059745586]
-                //     },
-                //     "properties": {
-                //         "title": "Mapbox DC",
-                //         "icon": "monument"
-                //     }
-                // }, {
-                //     "type": "Feature",
-                //     "geometry": {
-                //         "type": "Point",
-                //         "coordinates": [-122.414, 37.776]
-                //     },
-                //     "properties": {
-                //         "title": "Mapbox SF",
-                //         "icon": "harbor"
-                //     }
-                // }]
-            }
-        },
-        "layout": {
-            "icon-image": "{icon}-15",
-            "text-field": "{title}",
-            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            "text-offset": [0, 0.6],
-            "text-anchor": "top"
-        }
-    });
-}
-
-
->>>>>>> frontEndUI
-
 </script>
 
 {% endblock %}
