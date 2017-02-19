@@ -37,9 +37,15 @@ query = 'restaurant' # type of business user inputted
 rad = 100 # depends on the zoom level
 places = gmaps.places(query, location = (lat, lng), radius = rad)
 
-coordinates = []
+geojson = []
 for place in places['results']:
-	coordinates.append(place['geometry']['location'].values())
+	geo_dict = {}
+	geo_dict['type'] = 'Feature'
+	geo_dict['geometry'] = {}
+	geo_dict['geometry']['type'] = 'Point'
+	geo_dict['geometry']['coordinates'] = place['geometry']['location'].values()
+
+	geojson.append(geo_dict)
 
 from django.http import HttpResponse
 
@@ -50,7 +56,7 @@ def index(request):
 		'test_variable': test_variable,
 		'lat': lat,
 		'lng': lng,
-		'coordinates': coordinates,
+		'geojson': geojson,
 	}
 	return render(request,"maps/index.html",context)
 	# return HttpResponse("Hello, world.")
