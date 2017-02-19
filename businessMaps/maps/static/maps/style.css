@@ -1,18 +1,8 @@
-#UIContainer {
-	height:50em;
-	position: relative;
-	top:5%;
-	width:30%;
-	left:0%;
+
+#html, #body, #map-container {
+    height: 100%;
 }
 
-#mapContainer {
-	height: 50%;
-	position: relative; 
-	top:5%;
-	width:40%;
-	left: 55%;
-	margin-right: auto;      
+#map {
+    height: 40%;
 }
-
-#map { position:absolute; top:0%; bottom:0%; left:0%; width:100%; }
