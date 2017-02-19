@@ -7,6 +7,7 @@
 <head>
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet'/>
+
 </head>
 
 
@@ -49,7 +50,6 @@
 			<h4>Where to get the API's?</h4>
 
 			4square, Google Maps, Instagram, Flickr
-			Need to ensure that this is actually doable.
 		</div>
 		
 		<!-- Map -->
@@ -59,67 +59,72 @@
 
 			<!-- Mapbox API -->
 			<script>
-			mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
-			var map = new mapboxgl.Map({
-			    container: 'map', // container id
-			    style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
-			    center: [{{lng}}, {{lat}}], // starting position
-			    zoom: 15, // starting zoom
-			});
+			L.mapboxgl.accessToken = '';
+
+			var geojson = {{geojson}} // Retrieve coordinate variable from views.py
+
+
+			var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapGeo);
+			mapGeo.scrollWheelZoom.disable(); // Plot a layer of queried points
 			</script>
 
 
 
-			<!-- Google Maps API -->
 
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [{{lng}}, {{lat}}],
+    zoom: 15,
+});
 
-			 <script>
-		      // This example requires the Places library. Include the libraries=places
-		      // parameter when you first load the API. For example:
-		      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+map.on('load', function () {
 
-		      var map;
-		      var infowindow;
+    map.addLayer({
+        "id": "points",
+        "type": "symbol",
+        "source": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": {{geojson}}
+                // [{
+                //     "type": "Feature",
+                //     "geometry": {
+                //         "type": "Point",
+                //         "coordinates": [-77.03238901390978, 38.913188059745586]
+                //     },
+                //     "properties": {
+                //         "title": "Mapbox DC",
+                //         "icon": "monument"
+                //     }
+                // }, {
+                //     "type": "Feature",
+                //     "geometry": {
+                //         "type": "Point",
+                //         "coordinates": [-122.414, 37.776]
+                //     },
+                //     "properties": {
+                //         "title": "Mapbox SF",
+                //         "icon": "harbor"
+                //     }
+                // }]
+            }
+        },
+        "layout": {
+            "icon-image": "{icon}-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+});
+</script>
 
-		      function initMap() {
-		        var pyrmont = {lat: -33.867, lng: 151.195};
-
-		        map = new google.maps.Map(document.getElementById('map'), {
-		          center: pyrmont,
-		          zoom: 15
-		        });
-
-		        infowindow = new google.maps.InfoWindow();
-		        var service = new google.maps.places.PlacesService(map);
-		        service.nearbySearch({
-		          location: pyrmont,
-		          radius: 500,
-		          type: ['store']
-		        }, callback);
-		      }
-
-		      function callback(results, status) {
-		        if (status === google.maps.places.PlacesServiceStatus.OK) {
-		          for (var i = 0; i < results.length; i++) {
-		            createMarker(results[i]);
-		          }
-		        }
-		      }
-
-		      function createMarker(place) {
-		        var placeLoc = place.geometry.location;
-		        var marker = new google.maps.Marker({
-		          map: map,
-		          position: place.geometry.location
-		        });
-
-		        google.maps.event.addListener(marker, 'click', function() {
-		          infowindow.setContent(place.name);
-		          infowindow.open(map, this);
-		        });
-		      }
-		    </script>
-
+			
 
 		</div>
 	</div>
