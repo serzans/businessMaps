@@ -7,6 +7,7 @@
 <head>
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet'/>
+
 </head>
 
 
@@ -59,20 +60,70 @@
 
 			<!-- Mapbox API -->
 			<script>
-			L.mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
+			L.mapboxgl.accessToken = '';
 
 			var geojson = {{geojson}} // Retrieve coordinate variable from views.py
 
-			var map = new mapboxgl.Map({
-			    container: 'map', // container id
-			    style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
-			    center: [{{lng}}, {{lat}}], // starting position
-			    zoom: 15, // starting zoom
-			});
 
 			var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapGeo);
 			mapGeo.scrollWheelZoom.disable(); // Plot a layer of queried points
 			</script>
+
+
+
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [{{lng}}, {{lat}}],
+    zoom: 15,
+});
+
+map.on('load', function () {
+
+    map.addLayer({
+        "id": "points",
+        "type": "symbol",
+        "source": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": {{geojson}}
+                // [{
+                //     "type": "Feature",
+                //     "geometry": {
+                //         "type": "Point",
+                //         "coordinates": [-77.03238901390978, 38.913188059745586]
+                //     },
+                //     "properties": {
+                //         "title": "Mapbox DC",
+                //         "icon": "monument"
+                //     }
+                // }, {
+                //     "type": "Feature",
+                //     "geometry": {
+                //         "type": "Point",
+                //         "coordinates": [-122.414, 37.776]
+                //     },
+                //     "properties": {
+                //         "title": "Mapbox SF",
+                //         "icon": "harbor"
+                //     }
+                // }]
+            }
+        },
+        "layout": {
+            "icon-image": "{icon}-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+});
+</script>
 
 			
 
