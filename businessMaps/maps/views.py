@@ -38,21 +38,22 @@ query = 'restaurant' # type of business user inputted
 rad = 100 # depends on the zoom level
 places = gmaps.places(query, location = (lat, lng), radius = rad)
 
-geojson = []
-for place in places[u'results']:
+geolist = []
+for place in places[u"results"]:
 	geo_dict = {}
-	geo_dict[u'type'] = 'Feature'
-	geo_dict[u'geometry'] = {}
-	geo_dict[u'geometry'][u'type'] = 'Point'
-	geo_dict[u'geometry'][u'coordinates'] = place[u'geometry'][u'location'].values()
+	geo_dict[u"type"] = "Feature"
+	geo_dict[u"geometry"] = {}
+	geo_dict[u"geometry"][u"type"] = "Point"
+	geo_dict[u"geometry"][u"coordinates"] = place[u"geometry"][u"location"].values()
 
-	geo_dict[u'properties'] = {}
-	geo_dict[u'properties'][u'title'] = place[u'name']
-	geo_dict[u'icon'] = 'restaurant'
+	geo_dict[u"properties"] = {}
+	geo_dict[u"properties"][u"title"] = place[u"name"]
+	geo_dict[u"icon"] = "restaurant"
 
-	geojson.append(geo_dict)
+	geolist.append(geo_dict)
 #print geojson
-geojson = json.dumps(geojson)
+
+
 
 from django.http import HttpResponse
 
@@ -63,9 +64,14 @@ def index(request):
 		'test_variable': test_variable,
 		'lat': lat,
 		'lng': lng,
-		'geojson': geojson,
+		'geojson': geolist,
 	}
+
+
 	return render(request,"maps/index.html",context)
 	# return HttpResponse("Hello, world.")
 
+def json_request(request):
+	geojson = json.dumps(geolist)
+	return HttpResponse(geojson, content_type = 'application/json') 
 # latest
