@@ -4,6 +4,7 @@ from django.template import loader
 
 # Google maps API example
 from django.conf import settings
+import json
 
 GMAPS_API_KEY=getattr(settings,"GMAPS_API_KEY",None)
 
@@ -50,6 +51,8 @@ for place in places[u'results']:
 	geo_dict[u'icon'] = 'restaurant'
 
 	geojson.append(geo_dict)
+#print geojson
+geojson = json.dumps(geojson)
 
 from django.http import HttpResponse
 
