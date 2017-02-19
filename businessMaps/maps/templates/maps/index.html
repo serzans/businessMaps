@@ -102,8 +102,8 @@
         var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
-            center: [-0.9,51.7520], // starting position
-            zoom: 9, // starting zoom
+            center: [{{lng}}, {{lat}}], // starting position
+            zoom: 12, // starting zoom
         });
         map.addControl(new MapboxGeocoder({
             accessToken: mapboxgl.accessToken
@@ -121,46 +121,28 @@ $(document).ready( function() {
         });
 
         searchRequest = {type: $('#businessType').val(), API: APIarray, coord: map.getCenter().toArray()};
-
-        alert( JSON.stringify(searchRequest) );
-
         $.ajax({
-
+            method: "GET",
+            url: "ajax/",
+            success: function(data) {
+                alert("success");
+                updateMap(data);
+            }
         });
 
     });
 });
 
-function updateMap(response) {
-    map.addLayer({
+function updateMap(data) {
+    console.log(data);
+    var layer = {
         "id": "points",
         "type": "symbol",
         "source": {
             "type": "geojson",
-            "data":
+            "data": {
                 "type": "FeatureCollection",
-                "features": {{jsonData}},
-                // [{
-                //     "type": "Feature",
-                //     "geometry": {
-                //         "type": "Point",
-                //         "coordinates": [-77.03238901390978, 38.913188059745586]
-                //     },
-                //     "properties": {
-                //         "title": "Mapbox DC",
-                //         "icon": "monument"
-                //     }
-                // }, {
-                //     "type": "Feature",
-                //     "geometry": {
-                //         "type": "Point",
-                //         "coordinates": [-122.414, 37.776]
-                //     },
-                //     "properties": {
-                //         "title": "Mapbox SF",
-                //         "icon": "harbor"
-                //     }
-                // }]
+                "features": data
             }
         },
         "layout": {
@@ -170,7 +152,9 @@ function updateMap(response) {
             "text-offset": [0, 0.6],
             "text-anchor": "top"
         }
-    });
+    };
+    console.log(layer);
+    map.addLayer(layer);
 }
 </script>
 

@@ -44,11 +44,11 @@ for place in places[u"results"]:
 	geo_dict[u"type"] = "Feature"
 	geo_dict[u"geometry"] = {}
 	geo_dict[u"geometry"][u"type"] = "Point"
-	geo_dict[u"geometry"][u"coordinates"] = place[u"geometry"][u"location"].values()
+	geo_dict[u"geometry"][u"coordinates"] = place[u"geometry"][u"location"].values()[::-1]
 
 	geo_dict[u"properties"] = {}
 	geo_dict[u"properties"][u"title"] = place[u"name"]
-	geo_dict[u"icon"] = "restaurant"
+	geo_dict[u"properties"][u"icon"] = "monument"
 
 	geolist.append(geo_dict)
 #print geojson
@@ -71,7 +71,7 @@ def index(request):
 	return render(request,"maps/index.html",context)
 	# return HttpResponse("Hello, world.")
 
-def json_request(request):
+def ajax(request):
 	geojson = json.dumps(geolist)
 	return HttpResponse(geojson, content_type = 'application/json') 
 # latest
