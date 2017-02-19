@@ -47,3 +47,4 @@ def index(request):
 	return render(request,"maps/index.html",context)
 	# return HttpResponse("Hello, world.")
 
+# latest
