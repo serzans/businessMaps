@@ -1,46 +1,131 @@
 {% extends 'maps/header.html' %}
 {% block content %}
 
-<h1>{{ test_variable }} (coordinates, type, etc.)</h1>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+
+        <div id="page-wrapper" style="min-height: 354px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="file:///Users/ilyalapan/Downloads/startbootstrap-sb-admin-2-gh-pages/pages/index.html#">Action</a>
+                                        </li>
+                                        <li><a href="file:///Users/ilyalapan/Downloads/startbootstrap-sb-admin-2-gh-pages/pages/index.html#">Another action</a>
+                                        </li>
+                                        <li><a href="file:///Users/ilyalapan/Downloads/startbootstrap-sb-admin-2-gh-pages/pages/index.html#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="file:///Users/ilyalapan/Downloads/startbootstrap-sb-admin-2-gh-pages/pages/index.html#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="map"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+
+                    <!-- /.panel -->
+
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-8 -->
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Options
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="file:///Users/ilyalapan/Downloads/startbootstrap-sb-admin-2-gh-pages/pages/index.html#" class="list-group-item">
+                                    <h4>
+                                    <input type="checkbox" value="foursquare" name="API">
+                                    Foursquare
+                                    </h4>
+                                </a>
+                            </div>
+                            <!-- /.list-group -->
+                            <button type="button" id="search" class="btn btn-primary">Search</button>
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+
+                    <!-- /.panel -->
+
+                    <!-- /.panel .chat-panel -->
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="./SB Admin 2 - Bootstrap Admin Theme_files/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./SB Admin 2 - Bootstrap Admin Theme_files/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="./SB Admin 2 - Bootstrap Admin Theme_files/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="./SB Admin 2 - Bootstrap Admin Theme_files/raphael.min.js"></script>
+    <script src="./SB Admin 2 - Bootstrap Admin Theme_files/morris.min.js"></script>
+    <script src="./SB Admin 2 - Bootstrap Admin Theme_files/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="./SB Admin 2 - Bootstrap Admin Theme_files/sb-admin-2.js"></script>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
 
 <div class="jumbotron text-center">
 	<h3>Mapping economic activity</h3>
 </div>
 
 <div class="container">
-	<div class="row">
-		<!-- User interface -->
-		<div class="col-sm-6">
-			<h4>Here goes the UI</h4>
-
-			<ul>
-			<li>Allow uploads of GIS files for more custom maps</li>
-
-			<li>Select location (google maps API): searchbar</li>
-			<li>Filter which data is included: checkboxes ... find the API's and plot the locations on the map. Use interpolation with weighting to produce heatmaps</li>
-			<li>Population density filter: google maps?</li>
-			<li>Threshold filters</li>
-			<li>Drop-down or similar: Type of business</li>
-			<li>Button: show competitors</li>
-			</ul>
-
-			<h4>Some general ideas</h4>
-
-			Plot properties available for rent on the map and link to real estate agencies
-
-			Draw correlations between different data
-
-			Find 'CBD' zones
-
-			Core value: find location for business
-
-
-			<h4>Where to get the API's?</h4>
-
-			4square, Google Maps, Instagram, Flickr
-		</div>
-
-		
 
 <div class="jumbotron" >
 	<div class="container">
@@ -74,7 +159,6 @@
                 </div>
             </div>
             <div class="col-sm-6">
-            <div id="map"></div>
             </div>
             <div class="col-sm-3">
                 <select id="businessType" class="form-control">
@@ -87,14 +171,9 @@
             </div>
         </div>
         <div class="row">
-            <button type="button" id="search" class="btn btn-primary">Search</button>
         </div>
 	</div>
 </div>
-
-
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
 
 <!-- Mapbox API -->
 <script>
