@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
+from django.views.generic import TemplateView
+
 
 
 # Google maps API example
@@ -75,3 +77,7 @@ def ajax(request):
 	geojson = json.dumps(geolist)
 	return HttpResponse(geojson, content_type = 'application/json') 
 # latest
+
+class HomePageView(TemplateView):
+    def get(self, request, **kwargs):
+        return render(request, 'index.html', context=None)
