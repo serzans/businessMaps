@@ -1,4 +1,4 @@
-#!/Users/marisserzans/Documents/businessMaps/venv/bin/python
+#!/Users/marisserzans/businessMaps/venv/bin/python
 
 import sys
 import getopt
