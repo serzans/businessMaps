@@ -76,10 +76,9 @@ WSGI_APPLICATION = 'businessMaps.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default=config('postgres://wyngmsogpwjcko:046df7933a163716a369ab71a02ed4bddc4441581f68f67bb39139e8fa1402e5@ec2-23-21-186-138.compute-1.amazonaws.com:5432/d269sb6lst9p13')
+    )
 }
 
 
