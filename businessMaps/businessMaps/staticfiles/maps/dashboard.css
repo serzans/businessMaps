@@ -1,0 +1,25 @@
+#html, #body, #map-container {
+    height: 100%;
+}
+
+#map {
+    height: 500px;
+}
+
+.minimal-inverted {
+    padding-top: 7px;
+    position: relative;
+    height: 41px;
+    padding-left: 17px;
+}
+
+.navbar .title {
+    font-family: Montserrat, serif;
+    font-weight: bold;
+    color: white;
+}
+
+.blank-row {
+    height: 50px;
+}
+
