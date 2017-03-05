@@ -1,1 +1,1 @@
-web: sh -c 'cd businessMaps/businessMaps' && gunicorn businessMaps.wsgi:application --log-file -
+web: gunicorn $WSGI_PATH:application --log-file -
