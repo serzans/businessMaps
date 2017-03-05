@@ -72,14 +72,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'businessMaps.wsgi.application'
 
 
-# Database
+# Database configuration
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('postgres://wyngmsogpwjcko:046df7933a163716a369ab71a02ed4bddc4441581f68f67bb39139e8fa1402e5@ec2-23-21-186-138.compute-1.amazonaws.com:5432/d269sb6lst9p13')
-    )
-}
+# DATABASES = {
+    # 'default': dj_database_url.config(
+        # default=config('postgres://wyngmsogpwjcko:046df7933a163716a369ab71a02ed4bddc4441581f68f67bb39139e8fa1402e5@ec2-23-21-186-138.compute-1.amazonaws.com:5432/d269sb6lst9p13')
+    # )
+# }
 
 
 # Password validation
