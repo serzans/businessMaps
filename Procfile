@@ -1,1 +1,1 @@
-web: gunicorn $WSGI_PATH:application --log-file -
+web: gunicorn businessmaps.wsgi:application --log-file -
