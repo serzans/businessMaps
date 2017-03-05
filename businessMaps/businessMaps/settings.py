@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'businessMaps.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(DATABASE_URL)
+    'default': dj_database_url.config()
 }
 
 
