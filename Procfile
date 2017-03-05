@@ -1,1 +1,1 @@
-web python businessMaps/manage.py runserver
+web: gunicorn businessMaps.wsgi --log-file -
