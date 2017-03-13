@@ -1,6 +1,7 @@
 {% extends 'maps/header.html' %}
 {% block content %}
 {% load static %}
+
 <body>
 
         <div class="container-fluid">
@@ -12,7 +13,7 @@
                                 <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                                 </button>
                                 <div class="row">
-                                    
+
                                     <div class="col-lg-2">
                                         <img class = "minimal-inverted" src="{% static "assets/images/wolf-emblem.svg" %}" alt="Wherewolf Technologies" id="ww-logo">
                                     </div>
@@ -44,13 +45,13 @@
                                     </li>
                                 </ul>
                             </div>
-                            
+
                         </div>
                     </nav>
                 </div>
             <div class="col-sm-9 col-lg-10">
             <!-- your page content -->
-                
+
         <div id="page-wrapper" style="min-height: 354px;">
             <div class="row">
                 <div class="col-lg-12">
@@ -248,69 +249,10 @@
     </div>
 </div>
 
-<!-- Mapbox API -->
-<script>
-        mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyemFucyIsImEiOiJjaXl1ZHVobTEwMDBvMnFycjlzcm9rcXB4In0.upeL8wQ_YbuTjQ8oN1SOFA';
-        var map = new mapboxgl.Map({
-            container: 'map', // container id
-            style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
-            center: [{{lng}}, {{lat}}], // starting position
-            zoom: 12, // starting zoom
-        });
-        map.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken
-        }));
-</script>
 
-<script>
-$(document).ready( function() {
-    $('#search').click(function(){
-
-        var APIarray = [];
-
-        $.each($("input[name='API']:checked"), function(){
-            APIarray.push($(this).val());
-        });
-
-        searchRequest = {type: $('#businessType').val(), API: APIarray, coord: map.getCenter().toArray()};
-        $.ajax({
-            method: "GET",
-            url: "ajax/",
-            success: function(data) {
-                alert("success");
-                updateMap(data);
-            }
-        });
-
-    });
-});
-
-function updateMap(data) {
-    console.log(data);
-    var layer = {
-        "id": "points",
-        "type": "symbol",
-        "source": {
-            "type": "geojson",
-            "data": {
-                "type": "FeatureCollection",
-                "features": data
-            }
-        },
-        "layout": {
-            "icon-image": "{icon}-15",
-            "text-field": "{title}",
-            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            "text-offset": [0, 0.6],
-            "text-anchor": "top"
-        }
-    };
-    console.log(layer);
-    map.addLayer(layer);
-}
-</script>
 
     </div>
   </div>
 
+<script src="{% static "maps/index.js" %}"></script>
 {% endblock %}
