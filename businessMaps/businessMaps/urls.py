@@ -16,10 +16,20 @@ Including another URLconf
 
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
 from maps import views
 
 urlpatterns = [
     url(r'^maps/', include('maps.urls')),
 	url(r'^admin/', admin.site.urls),
-	url(r'^$', views.HomePageView.as_view())
+	url(r'^$', views.HomePageView.as_view()),
+    url('^register/', CreateView.as_view(
+            template_name='registration/register.html',
+            form_class=UserCreationForm,
+            success_url='/'
+    )),
+    url(r'^login/$', auth_views.login, name='login'),
+
 ]

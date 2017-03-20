@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns= [
 	url(r'^$', views.Dashboard.as_view(), name='index'),
-	url('^ajax/', views.ajax, name='ajax'),
+	url('^ajax/', views.Dashboard.ajax, name='ajax'),
 ]
